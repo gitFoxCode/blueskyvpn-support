@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>BlueSkyVPN | Support</title>
+	<link rel="stylesheet" href="support-style.css">
+</head>
+<body>
+	
+<section class="section">
+	<div class="support__box__small">
+		<h1>Support</h1>
+		<div class="support__badge support__blueskyicon">
+			BlueSky<span class="support__bold">VPN</span> <span class="support__class">| SUPPORT</span>
+		</div>
+		<h2>We are <span class="support__bold">here</span> to help <span class="support__bold">you</span></h2>
+	</div>
+	<div class="support__box__icon">
+		<span>Support</span>
+	</div>
+	<div class="support__box__big">
+		<span class="support__title">Stay in touch with us</span>
+		<p class="support__undertitle">You have any questions? Write to us!</p>
+		<div class="support__form">
+			<form method="POST" action="#">
+				<label for="support-email">
+					<span class="support__form__name">Email Address</span>
+					<input type="email" class="support__form__input" id="support-email" required placeholder="johnsmith@mail.com">
+				</label>
+				<label for="support-problem">
+					<span class="support__form__name">My problem is</span>
+					<select class="support__form__select form-control" id="support-problem" required placeholder="johnsmith@mail.com">
+						<option value="" disabled selected hidden>Choose from list</option>
+						<option value="a">Connection Issue</option>
+				        <option value="b">Billing and Pricing Issue</option>
+				        <option value="c">General Support</option>
+				        <option value="d">Other (write below)</option>
+					</select>
+				</label>
+				<label for="support-specify" class="support__form__disabled">
+					<span class="support__form__name">Specify your problem</span>
+					<input type="text" class="support__form__input" id="support-specify" required placeholder="Strange issue">
+				</label>
+				<label for="support-message">
+					<span class="support__form__name">Message</span>
+					<textarea class="support__form__textarea" id="support-message" required placeholder="I had ver strange issue..."></textarea>
+				</label>
+				<button type="submit" class="support__submit">Send Message</button>
+			</form>
+		</div>
+	</div>
+</section>
+
+<script>
+	// if Other is not selected: disable input below
+	document.getElementById("support-problem").addEventListener("change", ()=>{
+		if(document.getElementById('support-problem').value == "d") {
+    		document.querySelector(".support__form__disabled").style.height = "auto";
+    		document.querySelector(".support__form__disabled").style.opacity = "1";
+		}else{
+			document.querySelector(".support__form__disabled").style.height = "0";
+    		document.querySelector(".support__form__disabled").style.opacity = "0";
+		}
+	}, false);
+	
+</script>
+</body>
+</html>
