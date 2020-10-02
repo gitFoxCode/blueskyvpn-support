@@ -5,11 +5,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>BlueSkyVPN | Support</title>
 	<link rel="stylesheet" href="support-style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-	
+
 <section class="section">
 	<div class="support__box__small">
+		<a href="" class="section__nav__back">Back to homepage</a>
 		<h1>Support</h1>
 		<div class="support__badge support__blueskyicon">
 			BlueSky<span class="support__bold">VPN</span> <span class="support__class">| SUPPORT</span>
@@ -102,7 +104,10 @@
 
 		if(!errors){
 			document.querySelector(".support__box__big").classList.add("support__submitted__box");
-			document.querySelector(".support__box__big").innerHTML = `<span class="support__title">Ticket submitted</span><p class="support__undertitle">Message sent successfully</p>`;
+			document.querySelector(".support__box__big").innerHTML = `
+			<img src="./success-icon.svg" alt="" class="support__success__icon">
+			<span class="support__title">Ticket submitted</span>
+			<p class="support__undertitle">Message sent successfully</p>`;
 		}
 	}, false);
 	
