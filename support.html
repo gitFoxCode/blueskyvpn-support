@@ -26,11 +26,12 @@
 			<form method="POST" action="#">
 				<label for="support-email">
 					<span class="support__form__name">Email Address</span>
-					<input type="email" class="support__form__input" id="support-email" required placeholder="johnsmith@mail.com">
+					<input type="email" class="support__form__input" id="support-email" placeholder="johnsmith@mail.com">
 				</label>
+				<div class="support__form__error"></div>
 				<label for="support-problem">
 					<span class="support__form__name">My problem is</span>
-					<select class="support__form__select form-control" id="support-problem" required placeholder="johnsmith@mail.com">
+					<select class="support__form__select form-control" id="support-problem" placeholder="johnsmith@mail.com">
 						<option value="" disabled selected hidden>Choose from list</option>
 						<option value="a">Connection Issue</option>
 				        <option value="b">Billing and Pricing Issue</option>
@@ -40,12 +41,14 @@
 				</label>
 				<label for="support-specify" class="support__form__disabled">
 					<span class="support__form__name">Specify your problem</span>
-					<input type="text" class="support__form__input" id="support-specify" required placeholder="Strange issue">
+					<input type="text" class="support__form__input" id="support-specify" placeholder="Strange issue">
 				</label>
+				<div class="support__form__error"></div>
 				<label for="support-message">
 					<span class="support__form__name">Message</span>
-					<textarea class="support__form__textarea" id="support-message" required placeholder="I had ver strange issue..."></textarea>
+					<textarea class="support__form__textarea" id="support-message" placeholder="I had ver strange issue..."></textarea>
 				</label>
+				<div class="support__form__error"></div>
 				<button type="submit" class="support__submit">Send Message</button>
 			</form>
 		</div>
@@ -61,6 +64,45 @@
 		}else{
 			document.querySelector(".support__form__disabled").style.height = "0";
     		document.querySelector(".support__form__disabled").style.opacity = "0";
+		}
+	}, false);
+
+	// Frontend validation:
+	const email = document.getElementById("support-email");
+	const specify = document.getElementById("support-specify");
+	const list = document.getElementById("support-problem");
+	const message = document.getElementById("support-message");
+	const submit = document.querySelector(".support__submit");
+	const errorBoxs = document.querySelectorAll(".support__form__error");
+
+	submit.addEventListener("click", (e)=>{
+		let errors = 0;
+		errorBoxs[0].innerText = "";
+		errorBoxs[1].innerText = "";
+		errorBoxs[2].innerText = "";
+
+		e.preventDefault(); /* No reload, add ajax there or something*/
+
+		if((email.value.trim() == "") || !(/\S+@\S+\.\S+/.test(email.value))){
+			errorBoxs[0].innerText = "Write valid adress e-mail!"; 
+			errors++;
+		}
+		if(list.selectedIndex == 0){
+			errorBoxs[1].innerText = "Select a problem topic from the list!"; 
+			errors++;
+		}
+		if(list.selectedIndex == 4 && (specify.value.trim() == "")){
+			errorBoxs[1].innerText = "Write what the problem is about!"; 
+			errors++;
+		}
+		if( message.value.trim() == ""){
+			errorBoxs[2].innerText = "Write a message!"; 
+			errors++;
+		}
+
+		if(!errors){
+			document.querySelector(".support__box__big").classList.add("support__submitted__box");
+			document.querySelector(".support__box__big").innerHTML = `<span class="support__title">Ticket submitted</span><p class="support__undertitle">Message sent successfully</p>`;
 		}
 	}, false);
 	
